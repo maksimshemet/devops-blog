@@ -1,0 +1,5 @@
+@import "tailwindcss";
+
+.markdown > * {
+  all: revert;
+}
