@@ -2,7 +2,7 @@ apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
   name: maksym-shemet-blog-smv-pp-ua
-  namespace: blog
+  namespace: argocd
 spec:
   project: default
 
