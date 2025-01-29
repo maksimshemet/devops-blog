@@ -14,7 +14,7 @@ spec:
     - host: maksym.shemet.blog.smv.pp.ua
       http:
         paths:
-          - path: /
+          - path: /app
             pathType: ImplementationSpecific
             backend:
               service:
