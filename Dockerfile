@@ -12,19 +12,19 @@ RUN mkdir -p /usr/local/apache2/htdocs && \
 # Copy website files
 COPY dist /usr/local/apache2/htdocs/
 
-# Copy Apache configuration
-COPY site.conf /usr/local/apache2/conf/sites/
+# # Copy Apache configuration
+# COPY site.conf /usr/local/apache2/conf/sites/
 
-# Enable required modules
-RUN sed -i \
-    -e 's/#LoadModule rewrite_module/LoadModule rewrite_module/' \
-    -e 's/#LoadModule headers_module/LoadModule headers_module/' \
-    -e 's/#LoadModule deflate_module/LoadModule deflate_module/' \
-    -e 's/#LoadModule filter_module/LoadModule filter_module/' \
-    /usr/local/apache2/conf/httpd.conf
+# # Enable required modules
+# RUN sed -i \
+#     -e 's/#LoadModule rewrite_module/LoadModule rewrite_module/' \
+#     -e 's/#LoadModule headers_module/LoadModule headers_module/' \
+#     -e 's/#LoadModule deflate_module/LoadModule deflate_module/' \
+#     -e 's/#LoadModule filter_module/LoadModule filter_module/' \
+#     /usr/local/apache2/conf/httpd.conf
 
-# Include custom configuration
-RUN echo "Include conf/sites/site.conf" >> /usr/local/apache2/conf/httpd.conf
+# # Include custom configuration
+# RUN echo "Include conf/sites/site.conf" >> /usr/local/apache2/conf/httpd.conf
 
 # Set permissions for rootless operation
 RUN chown -R www-data:www-data /usr/local/apache2/conf/sites && \
