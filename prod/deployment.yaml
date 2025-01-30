@@ -18,6 +18,6 @@ spec:
     spec:
       containers:
         - name: blog
-          image: shemetmaksim/devops-blog:0.0.7
+          image: shemetmaksim/devops-blog:0.0.8
           ports:
             - containerPort: 80
