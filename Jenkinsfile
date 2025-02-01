@@ -8,6 +8,9 @@ pipeline {
                     containers:
                     - name: node
                       image: node:current-alpine3.20
+                      command:
+                      - cat
+                      tty: true
                     - name: docker
                       image: docker:latest
                       command:
