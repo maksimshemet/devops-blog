@@ -40,11 +40,6 @@ pipeline {
                 }
 
                 container('docker') {
-                    withCredentials([string(credentialsId: '57064344-e4e5-42d9-b127-719c542a6bab', variable: 'TOKEN')]) {
-                        sh '''
-                            sed -i "s/TBR/${TOKEN}/g" ~/.docker/config.json
-                        '''
-                    }
                     sh 'docker build -t shemetmaksim/devops-blog:jenkins-build_0.0.1 .'
                 }
             }
@@ -63,6 +58,13 @@ pipeline {
                             }
                         }' > ~/.docker/config.json
                     '''
+
+                    withCredentials([string(credentialsId: '57064344-e4e5-42d9-b127-719c542a6bab', variable: 'TOKEN')]) {
+                        sh '''
+                            sed -i "s/TBR/${TOKEN}/g" ~/.docker/config.json
+                        '''
+                    }
+                    
                     sh 'docker push shemetmaksim/devops-blog:jenkins-build_0.0.1'
 
             }
