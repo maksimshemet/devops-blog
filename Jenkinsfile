@@ -35,6 +35,7 @@ pipeline {
             steps {
                 container('docker') {
                     sh '''
+                        mkdir -p ~/.docker
                         echo '{
                             "auths": {
                                 "https://index.docker.io/v1/": {
@@ -43,8 +44,6 @@ pipeline {
                             }
                         }' > ~/.docker/config.json
                     '''
-                    
-                    sh 'mkdir -p ~/.docker'
 
                     withCredentials([string(credentialsId: 'docker-token', variable: 'TOKEN')]) {
                         sh '''
