@@ -1,82 +1,76 @@
 export const posts = [
     {
         id: 1,
-        title: "🚀 How to Start Learning Kubernetes with AI",
+        title: "👨‍💻 About Me & This Blog",
         date: "2025-02-01",
-        readTime: "10 min",
-        categories: ["DevOps", "Kubernetes", "AI"],
-        excerpt: "Discover how AI-powered tools can accelerate your Kubernetes learning journey and help you master cloud-native concepts! 🤖",
+        readTime: "5 min",
+        categories: ["DevOps", "Personal", "Blog"],
+        excerpt: "Learn about my journey in DevOps, how AI helped build this blog, and what to expect in future posts! 🚀",
         content: `
-# 🚀 How to Start Learning Kubernetes with AI  
+# 👨‍💻 About Me & This Blog  
 
-## 🎯 Introduction  
-Kubernetes is powerful but can be overwhelming for beginners. Luckily, AI can simplify the learning process by offering smart guidance, automated troubleshooting, and real-time insights. In this post, we'll explore AI-powered tools to kickstart your Kubernetes journey.  
-
----
-
-## 🤔 Why Use AI for Learning Kubernetes?  
-AI enhances the learning experience by:  
-✅ Providing instant explanations for Kubernetes concepts.  
-✅ Analyzing logs and suggesting solutions for errors.  
-✅ Offering interactive, hands-on learning environments.  
-
-🔗 [Kubernetes Official Docs](https://kubernetes.io/docs/) | 🔗 [K8sGPT AI Troubleshooting](https://github.com/k8sgpt-ai/k8sgpt)  
+## 🚀 Who Am I?  
+Hi! I'm Maksym Shemet, a DevOps engineer with expertise in Kubernetes, automation, and cybersecurity. With experience in Kubernetes administration and NLP, I love exploring how AI can enhance DevOps workflows.  
 
 ---
 
-## 🛠 Tools to Leverage  
+## 🏗 How This Blog Was Built  
+This blog is a fusion of human effort and AI assistance. Here's the tech stack behind it:  
 
-### 1️⃣ AI-Powered Documentation Search  
-Instead of manually searching for solutions, use AI-driven search tools like:  
-🔹 **ChatGPT** – Ask Kubernetes-related questions directly.  
-🔹 **K8sGPT** – AI-driven Kubernetes debugging tool.  
-🔹 **AI-Enhanced Docs** – Platforms like [kube.academy](https://kube.academy/) offer structured learning paths.  
-
-### 2️⃣ AI-Assisted Troubleshooting  
-Instead of spending hours debugging YAML errors, use:  
-🔹 **K8sGPT** for AI-powered log analysis.  
-🔹 **BotKube** to receive AI insights directly in Slack/Teams.  
-
-### 3️⃣ Interactive AI Labs  
-Hands-on practice is crucial. Try:  
-🔹 **KodeKloud** – AI-assisted Kubernetes courses.  
-🔹 **Katacoda** – Free Kubernetes playground.  
-🔹 **Play with K8s** – A sandbox for Kubernetes experiments.  
+🔹 **Frontend:** Built with React + Vite for high performance.  
+🔹 **CI/CD:** Automated builds and deployments using Jenkins and ArgoCD.  
+🔹 **Hosting:** Running on a self-managed VPS with a single-node Kubernetes cluster.  
+🔹 **Repo:** [GitHub](https://github.com/maksimshemet/devops-blog)  
 
 ---
 
-## 🏗 Hands-on Learning with AI  
-Get started by setting up a local Kubernetes environment with **Minikube**:  
-\`\`\`bash
-# Install Minikube
-brew install minikube
-
-# Start Minikube
-minikube start
-\`\`\`
-Then, deploy a sample pod and let AI tools analyze it!  
+## 💡 Why This Blog?  
+I started this blog to share insights, tutorials, and best practices in DevOps, Kubernetes, and automation. Expect deep dives into:  
+✅ Kubernetes and AI-powered DevOps  
+✅ CI/CD automation with Jenkins and ArgoCD  
+✅ Cloud infrastructure, cybersecurity, IaC, and real-world case studies  
 
 ---
 
-## 🔥 Real-World Use Case  
-Imagine you're debugging a failing pod. Instead of scanning logs manually, you run:  
-\`\`\`bash
-kubectl logs <pod-name> | k8sgpt analyze
-\`\`\`
-💡 AI suggests the root cause and possible fixes instantly!  
+## 🎯 Stay Connected  
+Want to learn more about DevOps & AI? Follow me on:  
+🔗 [LinkedIn](https://www.linkedin.com/in/rt-s-91196714a/)  
+🔗 [GitHub](https://github.com/maksimshemet)  
 
----
-
-## 🏁 Conclusion  
-AI is revolutionizing how we learn Kubernetes. Whether you're a beginner or an experienced engineer, leveraging AI tools can:  
-✅ Save time troubleshooting issues.  
-✅ Provide structured learning paths.  
-✅ Make Kubernetes less intimidating!  
-
-🚀 Let’s connect! Feel free to reach out on:  
-🔗 [LinkedIn](https://www.linkedin.com/in/rt-s-91196714a/) | 🔗 [GitHub](https://github.com/maksimshemet)  
-
-💬 Have thoughts or questions? Drop a comment below or open an issue in my [GitHub repo](https://github.com/maksimshemet). Let's build a better DevOps future together! 🔥  
-        `,
+💬 Have a question or topic suggestion? Drop a comment below or open an issue in my [GitHub repo](https://github.com/maksimshemet). Let's build the future of DevOps together! 🚀  
+        `
     },
+    {
+        id: 2,
+        title: "🤯 When Kubernetes Plays Hide and Seek",
+        date: "2025-02-03",
+        readTime: "7 min",
+        categories: ["DevOps", "Kubernetes", "Humor"],
+        excerpt: "Ever had a pod disappear without a trace? Let's dive into the funniest debugging adventures in Kubernetes! 🕵️‍♂️",
+        content: `
+# 🤯 When Kubernetes Plays Hide and Seek  
+
+## 🕵️‍♂️ The Mysterious Case of the Missing Pod  
+You're deploying an application. Everything seems fine, but then—BOOM! The pod vanishes like it's in witness protection. No logs, no errors. Just... gone.  
+
+---
+
+## 🔍 Possible Explanations  
+Here are some reasons your pod might be ghosting you:  
+🔹 **Evicted:** Kubernetes decided your pod wasn't paying rent. Check \`kubectl get events\`.  
+🔹 **OOMKilled:** Your app was too hungry for memory. Inspect it with \`kubectl describe pod <pod-name>\`.  
+🔹 **Node Failure:** Sometimes nodes just take an unplanned vacation. Look at \`kubectl get nodes\`.  
+
+---
+
+## 😂 Funniest Debugging Adventures  
+Once, I spent an hour debugging a "missing" pod, only to realize... I deployed it to the wrong namespace. \`kubectl get pods --all-namespaces\` saved the day.  
+
+Have your own Kubernetes horror story? Share it below! 🗣️  
+
+🚀 Follow me for more DevOps fun:  
+🔗 [LinkedIn](https://www.linkedin.com/in/rt-s-91196714a/)  
+🔗 [GitHub](https://github.com/maksimshemet)  
+        `
+    }
 ];
