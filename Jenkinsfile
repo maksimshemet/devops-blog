@@ -13,16 +13,18 @@ pipeline {
                       tty: true
                     - name: docker
                       image: docker:dind
+                      securityContext:
+                        privileged: true
                       command:
                       - cat
                       tty: true
                       volumeMounts:
-                      - mountPath: /run/containerd/containerd.sock
+                      - mountPath: /var/run/docker.sock
                         name: docker-sock
                     volumes:
                     - name: docker-sock
                       hostPath:
-                        path: /run/containerd/containerd.sock
+                        path: /var/run/containerd/containerd.sock
 
                 '''
         }
