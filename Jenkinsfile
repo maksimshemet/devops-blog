@@ -24,7 +24,7 @@ pipeline {
                     volumes:
                     - name: docker-sock
                       hostPath:
-                        path: /var/run/containerd/containerd.sock
+                        path: /var/run/docker.sock
 
                 '''
         }
