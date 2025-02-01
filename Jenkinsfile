@@ -33,6 +33,25 @@ pipeline {
     stages {
         stage('Build') {
             steps {
+
+                container('node') {
+                    sh 'npm install'
+                    sh 'npm run build'
+                }
+
+                container('docker') {
+                    withCredentials([string(credentialsId: '57064344-e4e5-42d9-b127-719c542a6bab', variable: 'TOKEN')]) {
+                        sh '''
+                            sed -i "s/TBR/${TOKEN}/g" ~/.docker/config.json
+                        '''
+                    }
+                    sh 'docker build -t shemetmaksim/devops-blog:jenkins-build_0.0.1 .'
+                }
+            }
+        }
+        
+        stage('Push') {
+            steps {
                 container('docker') {
                     sh '''
                         mkdir -p ~/.docker
@@ -44,24 +63,8 @@ pipeline {
                             }
                         }' > ~/.docker/config.json
                     '''
-
-                    withCredentials([string(credentialsId: '57064344-e4e5-42d9-b127-719c542a6bab', variable: 'TOKEN')]) {
-                        sh '''
-                            sed -i "s/TBR/${TOKEN}/g" ~/.docker/config.json
-                        '''
-                    }
-                    sh 'docker build -t shemetmaksim/devops-blog:jenkins-build_0.0.1 .'
                     sh 'docker push shemetmaksim/devops-blog:jenkins-build_0.0.1'
-                }
-            }
-        }
-        
-        stage('Test') {
-            steps {
-                container('node') {
-                    sh 'npm install'
-                    sh 'npm run build'
-                }
+
             }
         }
         
