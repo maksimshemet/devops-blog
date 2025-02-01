@@ -45,7 +45,7 @@ pipeline {
                         }' > ~/.docker/config.json
                     '''
 
-                    withCredentials([string(credentialsId: 'docker-token', variable: 'TOKEN')]) {
+                    withCredentials([string(credentialsId: '57064344-e4e5-42d9-b127-719c542a6bab', variable: 'TOKEN')]) {
                         sh '''
                             sed -i "s/TBR/${TOKEN}/g" ~/.docker/config.json
                         '''
