@@ -45,8 +45,8 @@ pipeline {
         stage('Deploy') {
             steps {
                 container('docker') {
-                    docker build -t shemetmaksim/devops-blog:jenkins-build_0.0.1 .
-                    docker push shemetmaksim/devops-blog:jenkins-build_0.0.1
+                    sh 'docker build -t shemetmaksim/devops-blog:jenkins-build_0.0.1 .'
+                    sh 'docker push shemetmaksim/devops-blog:jenkins-build_0.0.1'
                 }
             }
         }
