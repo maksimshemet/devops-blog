@@ -12,17 +12,18 @@ pipeline {
                       - cat
                       tty: true
                     - name: docker
-                      image: docker:latest
+                      image: docker:dind
                       command:
                       - cat
                       tty: true
                       volumeMounts:
-                      - mountPath: /var/run/docker.sock
+                      - mountPath: /run/containerd/containerd.sock
                         name: docker-sock
                     volumes:
                     - name: docker-sock
                       hostPath:
-                        path: /var/run/docker.sock
+                        path: /run/containerd/containerd.sock
+
                 '''
         }
     }
