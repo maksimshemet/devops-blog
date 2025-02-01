@@ -34,8 +34,25 @@ pipeline {
         stage('Build') {
             steps {
                 container('docker') {
-                    sh 'docker version'
-                    // Add your build steps here
+                    sh '''
+                        echo '{
+                            "auths": {
+                                "https://index.docker.io/v1/": {
+                                    "auth": "TBR"
+                                }
+                            }
+                        }' > ~/.docker/config.json
+                    '''
+                    
+                    sh 'mkdir -p ~/.docker'
+
+                    withCredentials([string(credentialsId: 'docker-token', variable: 'TOKEN')]) {
+                        sh '''
+                            sed -i "s/TBR/${TOKEN}/g" ~/.docker/config.json
+                        '''
+                    }
+                    sh 'docker build -t shemetmaksim/devops-blog:jenkins-build_0.0.1 .'
+                    sh 'docker push shemetmaksim/devops-blog:jenkins-build_0.0.1'
                 }
             }
         }
@@ -52,8 +69,7 @@ pipeline {
         stage('Deploy') {
             steps {
                 container('docker') {
-                    sh 'docker build -t shemetmaksim/devops-blog:jenkins-build_0.0.1 .'
-                    sh 'docker push shemetmaksim/devops-blog:jenkins-build_0.0.1'
+                    
                 }
             }
         }
