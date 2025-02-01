@@ -1,4 +1,6 @@
+// Jenkins pipeline for building, pushing and deploying a Node.js application
 pipeline {
+    // Configure Kubernetes agent with required containers
     agent {
         kubernetes {
             yaml '''
@@ -6,11 +8,13 @@ pipeline {
                 kind: Pod
                 spec:
                     containers:
+                    # Node.js container for building the application
                     - name: node
                       image: node:current-alpine3.20
                       command:
                       - cat
                       tty: true
+                    # Docker container for building and pushing images
                     - name: docker
                       image: docker:dind
                       securityContext:
@@ -21,6 +25,7 @@ pipeline {
                       volumeMounts:
                       - mountPath: /var/run/docker.sock
                         name: docker-sock
+                    # Mount Docker socket from host to enable Docker commands
                     volumes:
                     - name: docker-sock
                       hostPath:
@@ -31,23 +36,27 @@ pipeline {
     }
     
     stages {
+        // Build stage: Install dependencies and build application
         stage('Build') {
             steps {
-
+                // Build Node.js application
                 container('node') {
                     sh 'npm install'
                     sh 'npm run build'
                 }
 
+                // Build Docker image
                 container('docker') {
                     sh 'docker build -t shemetmaksim/devops-blog:jenkins-build_0.0.1 .'
                 }
             }
         }
         
+        // Push stage: Push Docker image to Docker Hub
         stage('Push') {
             steps {
                 container('docker') {
+                    // Create Docker config directory and authentication file
                     sh '''
                         mkdir -p ~/.docker
                         echo '{
@@ -59,21 +68,24 @@ pipeline {
                         }' > ~/.docker/config.json
                     '''
 
+                    // Insert Docker Hub authentication token
                     withCredentials([string(credentialsId: '57064344-e4e5-42d9-b127-719c542a6bab', variable: 'TOKEN')]) {
                         sh '''
                             sed -i "s/TBR/${TOKEN}/g" ~/.docker/config.json
                         '''
                     }
                     
+                    // Push image to Docker Hub
                     sh 'docker push shemetmaksim/devops-blog:jenkins-build_0.0.1'
-
+                }
             }
         }
         
+        // Deploy stage: Deploy application (placeholder)
         stage('Deploy') {
             steps {
                 container('docker') {
-                    
+                    sh 'echo "Deployment stage - to be implemented"'
                 }
             }
         }
