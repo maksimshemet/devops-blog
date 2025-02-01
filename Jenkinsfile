@@ -6,21 +6,21 @@ pipeline {
                 kind: Pod
                 spec:
                     containers:
-                    - name: docker
-                      image: docker:dind
-                      securityContext:
-                        privileged: true
-                      volumeMounts:
-                        - name: docker-socket
-                          mountPath: /var/run/docker.sock
                     - name: node
                       image: node:current-alpine3.20
-                    
+                    - name: docker
+                      image: docker:latest
+                      command:
+                      - cat
+                      tty: true
+                      volumeMounts:
+                      - mountPath: /var/run/docker.sock
+                        name: docker-sock
                     volumes:
-                    - name: docker-socket
+                    - name: docker-sock
                       hostPath:
                         path: /var/run/docker.sock
-            '''
+                '''
         }
     }
     
