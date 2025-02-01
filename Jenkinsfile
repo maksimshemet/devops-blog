@@ -13,12 +13,13 @@ pipeline {
                       volumeMounts:
                         - name: docker-socket
                           mountPath: /var/run/docker.sock
-                    volumes:
-                    - name: docker-socket
-                      hostPath:
-                        path: /var/run/docker.sock
                     - name: node
                       image: node:current-alpine3.20
+                    
+                    volumes:
+                    - name: docker-socket
+                        hostPath:
+                            path: /var/run/docker.sock
             '''
         }
     }
