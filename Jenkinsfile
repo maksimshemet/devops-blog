@@ -35,6 +35,10 @@ pipeline {
         }
     }
     
+    environment {
+        IMAGE_TAG = 'jenkins-build_0.0.2'
+    }
+    
     stages {
         // Build stage: Install dependencies and build application
         stage('Build') {
@@ -47,7 +51,7 @@ pipeline {
 
                 // Build Docker image
                 container('docker') {
-                    sh 'docker build -t shemetmaksim/devops-blog:jenkins-build_0.0.1 .'
+                    sh "docker build -t shemetmaksim/devops-blog:${IMAGE_TAG} ."
                 }
             }
         }
@@ -76,7 +80,7 @@ pipeline {
                     }
                     
                     // Push image to Docker Hub
-                    sh 'docker push shemetmaksim/devops-blog:jenkins-build_0.0.2'
+                    sh "docker push shemetmaksim/devops-blog:${IMAGE_TAG}"
                 }
             }
         }
