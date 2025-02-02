@@ -18,6 +18,7 @@ spec:
     spec:
       containers:
         - name: blog
-          image: shemetmaksim/devops-blog:jenkins-build_0.0.1
+          image: shemetmaksim/devops-blog:jenkins-build_0.0.2
+          imagePullPolicy: Always
           ports:
             - containerPort: 80

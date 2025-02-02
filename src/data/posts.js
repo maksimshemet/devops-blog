@@ -72,5 +72,122 @@ Have your own Kubernetes horror story? Share it below! 🗣️
 🔗 [LinkedIn](https://www.linkedin.com/in/rt-s-91196714a/)  
 🔗 [GitHub](https://github.com/maksimshemet)  
         `
-    }
+    },
+    {
+        id: 3,
+        title: "🔥 Why I Moved My CI/CD from the Cloud to a Self-Hosted Setup",
+        date: "2025-02-05",
+        readTime: "8 min",
+        categories: ["DevOps", "CI/CD", "Kubernetes"],
+        excerpt: "Managing CI/CD in the cloud is easy but expensive. Here's why I built a self-hosted pipeline with Jenkins & ArgoCD! 🚀",
+        content: `
+# 🔥 Why I Moved My CI/CD from the Cloud to a Self-Hosted Setup  
+
+## 🚀 The Cost of Convenience  
+Cloud-based CI/CD solutions are great, but they come at a cost. I wanted **full control** over my pipeline while keeping infrastructure expenses low.  
+
+---
+
+## 🏗 My Self-Hosted CI/CD Setup  
+Instead of relying on managed services, I built a **cost-effective, flexible** CI/CD pipeline:  
+🔹 **Jenkins** for automation  
+🔹 **ArgoCD** for GitOps-based deployments  
+🔹 **Kubernetes on a self-managed VPS**  
+
+This setup gives me **zero vendor lock-in** and **full flexibility** to customize workflows.  
+
+---
+
+## 💰 How I Optimized Costs  
+- **Self-hosted infrastructure** instead of cloud CI/CD services  
+- **Fine-tuned resource limits** to avoid overprovisioning  
+- **Automated cleanups** to free unused resources  
+- **DNS managed via Bind**, costing just **$3/month** for a static IP and server  
+
+---
+
+## 🤣 Fun Fact  
+AWS is great, but my bank account disagrees. Running my own Kubernetes cluster feels like cooking at home—it takes effort, but it’s way cheaper than eating out.  
+
+---
+
+## 🛠 Lessons Learned  
+Moving away from cloud CI/CD requires **strong monitoring, security, and maintenance**, but the cost savings and flexibility make it worth it.  
+
+💬 Have you built your own self-hosted CI/CD setup? Let’s discuss!  
+
+👉 Read more on my blog: maksym.shemet.blog.smv.pp.ua/self-hosted-ci-cd  
+👉 Follow my journey on LinkedIn: linkedin.com/in/rt-s-91196714a  
+👉 Check the repo: github.com/maksimshemet  
+        `
+    },
+    {
+        id: 4,
+        title: "🔐 Securing Your Self-Hosted Kubernetes Cluster",
+        date: "2025-02-07", 
+        readTime: "10 min",
+        categories: ["DevOps", "Kubernetes", "Security"],
+        excerpt: "Learn essential security practices for protecting your self-hosted Kubernetes cluster from common threats and vulnerabilities! 🛡️",
+        content: `
+# 🔐 Securing Your Self-Hosted Kubernetes Cluster
+
+## 🎯 Why Security Matters
+After setting up a self-hosted Kubernetes cluster (as discussed in my previous post), securing it becomes crucial. Let's explore how to protect your infrastructure from potential threats.
+
+---
+
+## 🛡️ Essential Security Measures
+Here are key practices I implemented to secure my cluster:
+
+🔹 **RBAC Configuration**
+- Implemented strict Role-Based Access Control
+- Created separate service accounts for different workloads
+- Limited permissions to the minimum required
+
+🔹 **Network Security**
+- Configured Network Policies to control pod-to-pod communication
+- Set up proper ingress rules with TLS
+- Implemented pod security policies
+
+🔹 **Container Security**
+- Used distroless images where possible
+- Implemented image scanning in CI/CD pipeline
+- Set resource quotas and limits
+
+---
+
+## 🔍 Monitoring & Auditing
+Security isn't just about prevention:
+- Deployed Prometheus & Grafana for monitoring
+- Enabled Kubernetes audit logging
+- Set up alerts for suspicious activities
+
+---
+
+## 💡 Pro Tips
+1. **Never** use the default service account
+2. Always encrypt secrets at rest
+3. Keep your cluster components updated
+4. Regular security scans are your friends
+
+---
+
+## 🚨 Common Pitfalls
+Learn from my mistakes:
+- Forgetting to rotate certificates
+- Leaving the Kubernetes dashboard exposed
+- Not setting memory/CPU limits
+- Neglecting regular security updates
+
+Want to learn more about Kubernetes security? Check out these resources:
+🔗 [Kubernetes Security Best Practices](https://kubernetes.io/docs/concepts/security/)
+🔗 [CIS Kubernetes Benchmark](https://www.cisecurity.org/benchmark/kubernetes)
+
+💬 What security measures do you use in your cluster? Share your experiences below!
+
+🔗 Follow me for more DevOps insights:
+- [LinkedIn](https://www.linkedin.com/in/rt-s-91196714a/)
+- [GitHub](https://github.com/maksimshemet)
+        `
+    },
 ];
