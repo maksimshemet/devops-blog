@@ -107,14 +107,14 @@ This setup gives me **zero vendor lock-in** and **full flexibility** to customiz
 ---
 
 ## 🤣 Fun Fact  
-AWS is great, but my bank account disagrees. Running my own Kubernetes cluster feels like cooking at home—it takes effort, but it’s way cheaper than eating out.  
+AWS is great, but my bank account disagrees. Running my own Kubernetes cluster feels like cooking at home—it takes effort, but it's way cheaper than eating out.  
 
 ---
 
 ## 🛠 Lessons Learned  
 Moving away from cloud CI/CD requires **strong monitoring, security, and maintenance**, but the cost savings and flexibility make it worth it.  
 
-💬 Have you built your own self-hosted CI/CD setup? Let’s discuss!  
+💬 Have you built your own self-hosted CI/CD setup? Let's discuss!  
 
 👉 Read more on my blog: maksym.shemet.blog.smv.pp.ua/self-hosted-ci-cd  
 👉 Follow my journey on LinkedIn: linkedin.com/in/rt-s-91196714a  
@@ -191,84 +191,94 @@ Want to learn more about Kubernetes security? Check out these resources:
         `
     },
     {
-        "id": 5,
-        "title": "🔐 Securing Kubernetes Secrets with Vault",
-        "date": "2025-02-10",
-        "readTime": "8 min",
-        "categories": ["DevOps", "Kubernetes", "Security"],
-        "excerpt": "Storing secrets in Kubernetes? Stop using plaintext ConfigMaps! Here's how I integrated HashiCorp Vault for secure secret management. 🚀",
-        "content": `
-    # 🔐 Securing Kubernetes Secrets with Vault
-    
-    ## 🤔 Why Vault?  
-    Kubernetes Secrets are OK, but they lack encryption at rest by default and can be easily exposed. HashiCorp Vault provides:  
-    ✅ Encrypted secrets storage  
-    ✅ Dynamic secrets with auto-expiry  
-    ✅ Fine-grained access control  
-    
-    ---
-    
-    ## 🛠 How I Integrated Vault with Kubernetes  
-    1️⃣ **Deployed Vault in my cluster** using the official Helm chart.  
-    2️⃣ **Enabled Kubernetes authentication** for seamless access.  
-    3️⃣ **Configured external secrets** to pull data securely into my workloads.  
-    
-    ---
-    
-    ## 🔥 Key Takeaways  
-    - **Stop hardcoding secrets!** Use Vault or another secure method.  
-    - **Rotate credentials automatically** to improve security.  
-    - **Audit access logs** to track who accessed what and when.  
-    
-    ---
-    
-    ## 🏁 What’s Next?  
-    I’m documenting my entire Kubernetes setup as code. Stay tuned for the GitHub repo!  
-    
-    👉 Read more on my blog: https://maksym.shemet.blog.smv.pp.ua/blog/5  
-    👉 Follow my updates: https://linkedin.com/in/rt-s-91196714a  
-    👉 Repo coming soon: https://github.com/maksimshemet  
+        id: 5,
+        title: "🔐 Securing Kubernetes Secrets with Vault",
+        date: "2025-02-10",
+        readTime: "8 min",
+        categories: ["DevOps", "Kubernetes", "Security"],
+        excerpt: "Storing secrets in Kubernetes? Stop using plaintext ConfigMaps! Here's how I integrated HashiCorp Vault for secure secret management. 🚀",
+        content: `
+# 🔐 Securing Kubernetes Secrets with Vault
+
+## 🤔 Why Vault?
+Kubernetes Secrets are OK, but they lack encryption at rest by default and can be easily exposed. HashiCorp Vault provides:
+✅ Encrypted secrets storage
+✅ Dynamic secrets with auto-expiry
+✅ Fine-grained access control
+
+---
+
+## 🛠 How I Integrated Vault with Kubernetes
+1️⃣ **Deployed Vault in my cluster** using the official Helm chart
+2️⃣ **Enabled Kubernetes authentication** for seamless access
+3️⃣ **Configured external secrets** to pull data securely into my workloads
+
+---
+
+## 🔥 Key Takeaways
+- **Stop hardcoding secrets!** Use Vault or another secure method
+- **Rotate credentials automatically** to improve security
+- **Audit access logs** to track who accessed what and when
+
+---
+
+## 🏁 What's Next?
+I'm documenting my entire Kubernetes setup as code. Stay tuned for the GitHub repo!
+
+👉 Read more on my blog: maksym.shemet.blog.smv.pp.ua/vault-secrets
+👉 Follow my updates: linkedin.com/in/rt-s-91196714a
+👉 Check the repo: github.com/maksimshemet
         `
     },
     {
-        "id": 6,
-        "title": "📦 MinIO – My Self-Hosted S3 Alternative",
-        "date": "2025-02-12",
-        "readTime": "7 min",
-        "categories": ["DevOps", "Kubernetes", "Storage"],
-        "excerpt": "AWS S3 is great, but sometimes you need a self-hosted alternative. Here’s why I chose MinIO for my Kubernetes storage needs! 🚀",
-        "content": `
-    # 📦 MinIO – My Self-Hosted S3 Alternative  
-    
-    ## 🚀 Why Not Just Use S3?  
-    AWS S3 is awesome, but:  
-    🔹 Storage costs add up over time.  
-    🔹 Self-hosting gives full control.  
-    🔹 MinIO provides an **S3-compatible API** for Kubernetes.  
-    
-    ---
-    
-    ## 🏗 My MinIO Setup  
-    🔹 **Deployed MinIO on Kubernetes** using Helm.  
-    🔹 **Configured persistent volumes** for data durability.  
-    🔹 **Exposed via an Ingress** to allow external access.  
-    
-    ---
-    
-    ## 🛠 Pros & Cons  
-    ✅ **Fast & lightweight** – Perfect for self-hosted setups.  
-    ✅ **S3 API-compatible** – Works with existing AWS tools.  
-    ❌ **Needs manual scaling** – Unlike AWS S3, you manage infra.  
-    
-    ---
-    
-    ## 🔥 What’s Next?  
-    I’m making my entire Kubernetes workloads public as **Infrastructure as Code**! Repo coming soon.  
-    
-    👉 Read more on my blog: https://maksym.shemet.blog.smv.pp.ua/blog/6  
-    👉 Follow my updates: https://linkedin.com/in/rt-s-91196714a  
-    👉 Soon on GitHub: https://github.com/maksimshemet  
+        id: 6,
+        title: "📦 MinIO – My Self-Hosted S3 Alternative",
+        date: "2025-02-12",
+        readTime: "7 min",
+        categories: ["DevOps", "Kubernetes", "Storage"],
+        excerpt: "AWS S3 is great, but sometimes you need a self-hosted alternative. Here's why I chose MinIO for my Kubernetes storage needs! 🚀",
+        content: `
+# 📦 MinIO – My Self-Hosted S3 Alternative
+
+## 🚀 Why Not Just Use S3?
+AWS S3 is awesome, but:
+
+🔹 Storage costs add up over time
+
+🔹 Self-hosting gives full control
+
+🔹 MinIO provides an **S3-compatible API** for Kubernetes
+
+---
+
+## 🏗 My MinIO Setup
+
+🔹 **Deployed MinIO on Kubernetes** using Helm
+
+🔹 **Configured persistent volumes** for data durability
+
+🔹 **Exposed via an Ingress** to allow external access
+
+---
+
+## 🛠 Pros & Cons
+
+✅ **Fast & lightweight** – Perfect for self-hosted setups
+
+✅ **S3 API-compatible** – Works with existing AWS tools
+
+❌ **Needs manual scaling** – Unlike AWS S3, you manage infrastructure
+
+---
+
+## 🔥 What's Next?
+I'm making my entire Kubernetes workloads public as **Infrastructure as Code**!
+
+👉 Read more on my blog: maksym.shemet.blog.smv.pp.ua/minio-setup
+
+👉 Follow my updates: linkedin.com/in/rt-s-91196714a
+
+👉 Check the repo: github.com/maksimshemet
         `
     }
-    
 ];
