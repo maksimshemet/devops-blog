@@ -36,7 +36,7 @@ pipeline {
     }
     
     environment {
-        IMAGE_TAG = 'jenkins-build_0.0.3'
+        IMAGE_TAG = 'jenkins-build_1.0.0'
     }
     
     stages {
