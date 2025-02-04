@@ -7,9 +7,9 @@ const HomePage = ({ isDark }) => {
 
   return (
     <div className="container mx-auto px-4 py-12">
-      <div className={`prose ${isDark ? 'prose-invert' : ''} max-w-none mb-12`}>
-        <h1>Welcome to DevBlog</h1>
-        <p className="text-xl">Exploring technology, one post at a time.</p>
+      <div >
+        <h1 className={`font-bold ${isDark ? 'text-white' : 'text-gray-800'}`}>Welcome to DevBlog</h1>
+        <p className={`prose ${isDark ? 'text-white' : 'text-gray-800'} max-w-none mb-12`}>Exploring technology, one post at a time.</p>
       </div>
 
       <h2 className={`text-2xl font-bold mb-8 ${isDark ? 'text-white' : 'text-gray-800'}`}>

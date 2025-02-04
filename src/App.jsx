@@ -1,6 +1,6 @@
 //import './App.css'
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Navbar from './components/Navbar';
 import HomePage from './components/HomePage';
 import BlogList from './components/BlogList';
@@ -9,6 +9,10 @@ import BlogPost from './components/BlogPost';
 
 const App = () => {
   const [isDark, setIsDark] = useState(true);
+
+  useEffect(() => {
+    document.body.className = isDark ? 'dark-theme' : 'light-theme';
+  }, [isDark]);
 
   return (
     <BrowserRouter>
