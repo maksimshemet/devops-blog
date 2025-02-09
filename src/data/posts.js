@@ -370,7 +370,7 @@ vault kv put secret/minio access_key=minio_access_key secret_key=minio_secret_ke
 ---
 
 ## 🔄 Accessing MinIO Secrets in Kubernetes  
-To allow Kubernetes workloads to retrieve secrets, I configured a **Vault Kubernetes auth role** and injected the credentials using an **InitContainer** pattern. This ensures that **secrets are fetched securely during pod startup.**
+To allow Kubernetes workloads to retrieve secrets, I configured **Vault VSO** and a **Vault Kubernetes auth role** and injected the credentials using an **Static Secret**. This ensures that **secrets are fetched securely during pod startup.**
 
 Example manifest snippet:
 \`\`\`yaml
