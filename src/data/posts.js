@@ -193,7 +193,7 @@ Want to learn more about Kubernetes security? Check out these resources:
     {
         id: 5,
         title: "🔐 Securing Kubernetes Secrets with Vault",
-        date: "2025-02-10",
+        date: "2025-02-08",
         readTime: "8 min",
         categories: ["DevOps", "Kubernetes", "Security"],
         excerpt: "Storing secrets in Kubernetes? Stop using plaintext ConfigMaps! Here's how I integrated HashiCorp Vault for secure secret management. 🚀",
@@ -233,7 +233,7 @@ I'm documenting my entire Kubernetes setup as code. Stay tuned for the GitHub re
     {
         id: 6,
         title: "📦 MinIO – My Self-Hosted S3 Alternative",
-        date: "2025-02-12",
+        date: "2025-02-08",
         readTime: "7 min",
         categories: ["DevOps", "Kubernetes", "Storage"],
         excerpt: "AWS S3 is great, but sometimes you need a self-hosted alternative. Here's why I chose MinIO for my Kubernetes storage needs! 🚀",
@@ -280,5 +280,130 @@ I'm making my entire Kubernetes workloads public as **Infrastructure as Code**!
 
 👉 Check the repo: github.com/maksimshemet
         `
+    },
+    {
+        id: 7,
+        title: "🚀 Integrating MinIO with Vault Static Secrets in Kubernetes",
+        date: "2025-02-09",
+        readTime: "9 min",
+        categories: ["DevOps", "Kubernetes", "Vault", "MinIO"],
+        excerpt: "Learn how I deployed MinIO in Kubernetes manually and securely integrated it with Vault to manage static secrets. 🛡️",
+        content: `
+# 🚀 Integrating MinIO with Vault Static Secrets in Kubernetes  
+
+## 🔧 Why Integrate MinIO with Vault?  
+MinIO provides S3-compatible object storage, but managing its credentials securely is key. By integrating Vault, we ensure that **access keys and secrets are stored, rotated, and accessed securely.**  
+
+---
+
+## 🏗 Deployment Overview  
+Here's a high-level overview of the steps I followed:  
+1️⃣ **Deploy MinIO manually on Kubernetes** using a custom \`minio.yaml\` file.  
+2️⃣ **Deploy Vault** in the same cluster to act as the secret manager.  
+3️⃣ **Configure Vault static secrets** to store MinIO access and secret keys securely.  
+4️⃣ **Grant Kubernetes apps access to Vault** to pull MinIO credentials securely.
+
+---
+
+## 📦 MinIO Deployment with Custom YAML  
+Instead of using Helm, I deployed MinIO manually using the following \`minio.yaml\` configuration. This setup includes a **Deployment**, **Services**, and **Ingress** to expose both the API and console endpoints.
+
+🔗 **Full setup instructions in the README:** [MinIO Deployment](https://github.com/maksimshemet/k8s/blob/main/env/prod/minio/README.md)  
+
+\`\`\`yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: minio-app
+  namespace: minio
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: minio-app
+  template:
+    metadata:
+      labels:
+        app: minio-app
+    spec:
+      containers:
+      - name: minio
+        image: quay.io/minio/minio:latest
+        command:
+        - /bin/bash
+        - -c
+        args: 
+        - minio server /home/shared --console-address :9001 --address :9000
+        env:
+        - name: MINIO_ROOT_USER
+          valueFrom:
+            secretKeyRef:
+              name: minio-user-secret
+              key: root_user
+        - name: MINIO_ROOT_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: minio-user-secret
+              key: root_pw
+        ports:
+        - name: console 
+          containerPort: 9001
+        - name: api
+          containerPort: 9000
+\`\`\`
+
+---
+
+## 🔐 Vault Deployment and Static Secrets Configuration  
+Vault handles the storage of MinIO credentials using **static secrets**. These secrets are accessible to Kubernetes workloads using **Vault's Kubernetes authentication method.**  
+🔗 **Full setup instructions in the README:** [Vault Deployment](https://github.com/maksimshemet/k8s/blob/main/env/prod/vault/README.md)  
+
+Key commands used for static secrets configuration:
+\`\`\`bash
+# Enable KV secrets engine
+vault secrets enable -path=secret kv
+
+# Store MinIO access keys
+vault kv put secret/minio access_key=minio_access_key secret_key=minio_secret_key
+\`\`\`
+
+---
+
+## 🔄 Accessing MinIO Secrets in Kubernetes  
+To allow Kubernetes workloads to retrieve secrets, I configured a **Vault Kubernetes auth role** and injected the credentials using an **InitContainer** pattern. This ensures that **secrets are fetched securely during pod startup.**
+
+Example manifest snippet:
+\`\`\`yaml
+env:
+  - name: MINIO_ACCESS_KEY
+    valueFrom:
+      secretKeyRef:
+        name: minio-secret
+        key: access_key
+  - name: MINIO_SECRET_KEY
+    valueFrom:
+      secretKeyRef:
+        name: minio-secret
+        key: secret_key
+\`\`\`
+
+---
+
+## 🔥 Lessons Learned  
+- **Secure secrets management** is essential, even for self-hosted solutions.  
+- Integrating Vault with MinIO improves the **security posture** of the entire setup.  
+- Always test secret access flows in **non-production environments** before deployment.
+
+---
+
+## 🚀 What's Next?  
+I'm continuing to document all of my Kubernetes workloads as **Infrastructure as Code** and will be making them publicly available in my GitHub repo. Stay tuned for more updates!
+
+👉 **MinIO README:** https://github.com/maksimshemet/k8s/blob/main/env/prod/minio/README.md  
+👉 **Vault README:** https://github.com/maksimshemet/k8s/blob/main/env/prod/vault/README.md  
+👉 Follow my journey on LinkedIn: https://linkedin.com/in/rt-s-91196714a  
+👉 Explore my GitHub: https://github.com/maksimshemet  
+        `
     }
+    
 ];
